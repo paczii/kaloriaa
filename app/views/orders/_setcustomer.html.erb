@@ -1,0 +1,25 @@
+<h1 style="margin-bottom: 100px">Kunden wählen</h1>
+
+
+<%= bootstrap_form_for(@order, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6") do |f| %>
+
+
+
+
+
+    <%= f.collection_select :customer_id, Customer.all, :id, :name, label_class: "labeltext", label: "Kunden auswählen" %>
+
+
+    <br>
+
+    <%= f.form_group do %>
+        <h1 > <%= f.submit "Bestätigen", class: "btn btn-success" %></h1>
+        <h6 style="margin-top: -20px;">Alle Felder müssen ausgefüllt werden.</h6>
+
+
+    <% end %>
+
+    <div style="margin-bottom: 100px"></div>
+<% end %>
+
+

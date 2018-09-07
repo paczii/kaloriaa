@@ -1,0 +1,24 @@
+<% provide(:title, 'Neuen Nutzer anlegen') %>
+<h1>1. Schritt: Neuen Nutzer anlegen</h1>
+
+<div class="row" style="margin-bottom: 80px;">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <%= f.label "Account Name" %>
+        <%= f.text_field :name, class: 'form-control' %>
+
+        <%= f.label "E-Mail" %>
+        <%= f.email_field :email, class: 'form-control' %>
+
+        <%= f.label "Passwort" %>
+        <%= f.password_field :password, class: 'form-control' %>
+
+        <%= f.label :password_confirmation, "Passwort bestätigen" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+        <%= f.submit "Weiter zu den Kundendaten", class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>

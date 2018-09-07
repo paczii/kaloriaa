@@ -1,0 +1,69 @@
+
+<h1>Bestellungen</h1>
+
+
+<table data-toggle="table" data-sort-name="userid" data-sort-order="desc" data-show-columns="true"  data-search="true"
+       data-show-refresh="true"
+       data-show-toggle="true"
+       data-pagination="true"
+       class="customtable"
+       data-toolbar="#toolbar"
+       data-show-export="true"
+       data-locale="de"
+>
+  <thead>
+  <tr>
+    <th data-field="id" data-sortable="true">ID</th>
+    <th data-editable="name" data-field="name" data-sortable="true">Kundenname</th>
+    <th data-field="day" data-sortable="true">Tag</th>
+    <th data-field="tw" data-sortable="true">Zeitfenster</th>
+    <th data-field="met" data-sortable="true">Methode</th>
+    <th data-field="status" data-sortable="true">Status</th>
+    <th data-field="created_at" data-sortable="true">Erstellt am</th>
+    <th data-field="n1" data-sortable="false"></th>
+    <th data-field="n2" data-sortable="false"></th>
+    <th data-field="n3" data-sortable="false"></th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @orders.each do |o| %>
+      <tr>
+        <td><%= o.id %> </td>
+        <td><%= if Customer.where(:id => o.customer_id).exists?
+                  Customer.find(o.customer_id).name
+                else "gelöschter Account"
+                end%> </td>
+        <td><%= o.day.to_time.strftime('%d.%m.%Y (%a)') %> </td>
+        <td><%= number_to_time(o.timewindow) %> </td>
+        <td><%= method_to_text(o.allocationmethod) %> </td>
+        <td><%= orderstatus_to_text(o.status) %> </td>
+        <td><%= o.created_at.to_time.strftime('%d.%m.%Y (%H:%M)') %> </td>
+
+
+        <td><%= link_to 'Anzeigen', o %></td>
+        <td><%= link_to 'Bearbeiten', edit_order_path(o) %></td>
+        <td><%= link_to 'Löschen', demoversion_path%></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+  <%= link_to new_order_path do %>
+      <div class="box" >
+        <div class="box-icon" style="padding-left: 3px; padding-top: 5px"> <span class="fa fa-3x fa-plus"></span> </div>
+        <div class="info">
+          <h4 class="text-center"><%= "Neue Bestellung aufgeben" %></h4>
+          <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+        </div>
+      </div>
+  <% end %>
+
+
+
+
+

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Optimization:</strong>
+  <%= @direction.optimization_id %>
+</p>
+
+<p>
+  <strong>From:</strong>
+  <%= @direction.from %>
+</p>
+
+<p>
+  <strong>To:</strong>
+  <%= @direction.to %>
+</p>
+
+<p>
+  <strong>By:</strong>
+  <%= @direction.by %>
+</p>
+
+<%= link_to 'Edit', edit_direction_path(@direction) %> |
+<%= link_to 'Back', directions_path %>

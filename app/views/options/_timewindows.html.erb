@@ -1,0 +1,31 @@
+
+<%= bootstrap_form_for(Option.find_by_name("timewindows"), layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6") do |f| %>
+
+
+
+
+    <h3 style="font-size: 30px" >Zeitfenster</h3>
+
+    <div style="margin-bottom: 70px"></div>
+
+
+    <%= f.text_field :value, label: "Zeitfenster", required: true, step: :any %>
+    <h6 >Folgendes Format:</h6>
+      <h6 > AnfangZeitfenster1-EndeZeitfenster1,AnfangZeitfenster2-EndeZeitfenster2, ... </h6>
+    <h6 >Anfang bzw. Ende in Minuten des Tages, z.B. 120 für 02:00 Uhr. </h6>
+
+
+
+
+
+    <br>
+
+    <%= f.form_group do %>
+        <h1 > <%= f.submit "Bestätigen", class: "btn btn-success", disabled: true  %></h1>
+        <h6 style="margin-top: -20px;">Alle Felder müssen ausgefüllt werden.</h6>
+
+
+    <% end %>
+
+    <div style="margin-bottom: 100px"></div>
+<% end %>

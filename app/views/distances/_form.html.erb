@@ -1,0 +1,39 @@
+
+<% if @distance.typey == 1
+     fromname = Customer.find(@distance.from_id).name
+     toname =  Customer.find(@distance.to_id).name
+   elsif @distance.typey == 2
+     fromname = Store.find(@distance.from_id).name
+     toname =  Customer.find(@distance.to_id).name
+   elsif @distance.typey == 3 or @distance.typey == 4
+     fromname = Customer.find(@distance.from_id).name
+     toname =  Store.find(@distance.to_id).name
+
+   end
+%>
+<h3>Von <%= fromname + " zu " + toname %></h3>
+<div style="margin-bottom: 50px"></div>
+
+<%= bootstrap_form_for(@distance, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6") do |f| %>
+
+
+
+
+
+    <%= f.number_field :traveltime, label: "Fahrtzeit (min)", required: true %>
+    <%= f.number_field :traveldistance, label: "Distanz (km)", required: true %>
+    <%= f.select :status, [["OK", "OK"], ["UNKNOWN_ERROR", "UNKNOWN_ERROR"]], {label: "Status", label_class: "labeltext"}, {class: "selectpicker", required: true } %>
+
+
+
+    <br>
+
+    <%= f.form_group do %>
+        <h1 > <%= f.submit "Abschicken", class: "btn btn-success" %></h1>
+        <h6 style="margin-top: -20px;">Alle Felder müssen ausgefüllt werden.</h6>
+
+
+    <% end %>
+
+    <div style="margin-bottom: 100px"></div>
+<% end %>

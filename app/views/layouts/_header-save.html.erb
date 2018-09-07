@@ -1,0 +1,89 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+
+
+  <div class="container">
+
+    <% if logged_in? %>
+    <%= link_to "E-GROCERY", current_user, id: "logo" %>
+        <% else %>
+        <%= link_to "E-GROCERY", root_path, id: "logo" %>
+
+        <% end %>
+
+        <nav>
+      <ul class="nav navbar-nav navbar-right">
+
+
+
+        <% if logged_in? %>
+
+
+            <li class="hvr-underline-reveal"><%= link_to "Produkte", products_path %></li>
+
+            <li class="hvr-underline-reveal">
+              <%= link_to text_with_badge('Warenkorb', if current_cart.price != nil
+                                                         current_cart.price else
+                                                         nil
+                                                       end), current_cart %>
+            </li>
+
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-align: left;">
+
+                <%= "Funktionen" %> <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li>Optimierungen</li>
+                <li class="divider"></li>
+                <li><%= link_to "Bestellungen", current_user %></li>
+                <li><%= link_to "Touren", edit_user_path(current_user) %></li>
+                <li><%= link_to "Optimierungen", current_user %></li>
+                <li class="divider"></li>
+                <li>Daten</li>
+                <li class="divider"></li>
+                <li><%= link_to "Geschäfte", current_user %></li>
+                <li><%= link_to "Kunden", current_user %></li>
+                <li><%= link_to "Produkte", current_user %></li>
+                <li><%= link_to "Fahrzeuge", current_user %></li>
+                <li><%= link_to "Fahrer", current_user %></li>
+                <li><%= link_to "Lagerbestände", current_user %></li>
+                <li class="divider"></li>
+                <li>Distanzen</li>
+                <li class="divider"></li>
+                <li><%= link_to "Distanzen", current_user %></li>
+                <li><%= link_to "Distanzen berechnen", current_user %></li>
+              </ul>
+            </li>
+
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-align: left;">
+
+                <%= gravatar_image_tag(current_user.email.gsub('spam', 'mdeering'), :alt => current_user.name, :gravatar => { :size => 30 , :default => 'https://cdn3.iconfinder.com/data/icons/faticons/32/user-01-512.png' , :include_size_attributes => false }) %>
+                <%= current_user.name %> <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Mein Profil", current_user %></li>
+                <li><%= link_to "Einstellungen", edit_user_path(current_user) %></li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "Log out", logout_path, method: "delete" %>
+                </li>
+              </ul>
+            </li>
+        <% else %>
+            <li class="hvr-underline-reveal"><%= link_to "Log in", login_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+
+  <% if logged_in? %>
+      <% if current_customer.city == nil %>
+          <div class="btn btn-danger ba" style="width: 100%" >
+           <%= link_to "Kundendaten noch nicht vollständig! Hier klicken um diese zu ergänzen.", edit_customer_path(current_customer), class: "btn btn-danger ba2" %>
+          </div>
+      <% end %>
+      <% end %>
+</header>

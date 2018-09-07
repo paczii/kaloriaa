@@ -1,0 +1,29 @@
+
+<%= bootstrap_form_for(@store, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6") do |f| %>
+
+
+
+    <br>
+    <% conceptarray = Option.find_by_name("concepts").value.split("/")%>
+    <br>
+
+    <%= f.text_field :name, label: "Name", required: true %>
+    <%= f.text_field :city, label: "Stadt", required: true %>
+    <%= f.number_field :zip, label: "PLZ", required: true %>
+    <%= f.text_field :street, label: "Straße", required: true %>
+    <%= f.select :concept, [["Gechäft (Pick-Up Only)", 1], ["Geschäft (Pick-Up & Delivery)", 2], ["Pick-Up Station", 3], ["Warehouse", 4], ["Hub", 5]], {label: "Konzept", label_class: "labeltext"}, {class: "selectpicker", required: true } %>
+
+
+    <br>
+
+    <%= f.form_group do %>
+        <h1 > <%= f.submit "Abschicken", class: "btn btn-success", disabled: true  %></h1>
+        <h6 style="margin-top: -20px;">Alle Felder müssen ausgefüllt werden.</h6>
+
+
+    <% end %>
+
+    <div style="margin-bottom: 100px"></div>
+<% end %>
+
+

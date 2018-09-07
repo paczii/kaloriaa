@@ -1,0 +1,92 @@
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4 item-photo">
+
+      <div class="box" style="text-align: center; display: inline">
+        <div class="box-icon" style="height: 220px; width: 220px"> <span class="fa fa-5x fa-truck"></span> </div>
+
+
+        <div class="info">
+          <h4 class="text-center">     </h4>
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+    <div class="col-xs-7" style="border:0px solid gray; border-left:1px solid #9b9b9b;">
+      <!-- Datos del vendedor y titulo del producto -->
+      <h1> <%= @vehicle.name %> </h1>
+      <h5></h5>
+
+
+      <h6 class="title-price" style="margin-bottom:15px;" ></h6>
+
+
+
+
+      <div class="section" style="padding-bottom:20px;">
+        <h3 style="margin-top:15px;">Datenblatt </h3>
+        <h4 style="margin-top:15px;">Reichweite: <%= @vehicle.range %> km </h4>
+        <h4 style="margin-top:15px;">Emissionen: <%= @vehicle.emissions %> g/km </h4>
+        <h4 style="margin-top:15px;">Durchschnittsgeschwindigkeit in der Stadt: <%= @vehicle.speed %> km/h</h4>
+
+      </div>
+
+      <div class="section" style="background: white; margin: 3px"></div>
+
+
+      <div class="section" style="padding-bottom:20px;">
+        <h3 style="margin-top:25px;">Kapazitäten </h3>
+        <h4 style="margin-top:15px;">Boxen: <%= @vehicle.boxcapacity.to_i %> </h4>
+        <h4 style="margin-top:15px;">Kühlboxen: <%= @vehicle.coolingboxcapacity.to_i %>  </h4>
+        <h4 style="margin-top:15px;">Frierboxen: <%= @vehicle.freezingboxcapacity.to_i %> </h4>
+      </div>
+
+      <div class="section" style="background: white; margin: 30px"></div>
+
+
+      <div class="section" style="padding-bottom:20px; background: none">
+        <%= link_to edit_vehicle_path(@vehicle) do %>
+            <div class="box">
+              <div class="box-icon"> <span class="fa fa-3x fa-pencil-square-o"></span> </div>
+              <div class="info">
+                <h4 class="text-center"><%= "Fahrzeugtyp bearbeiten" %></h4>
+                <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+
+      <div class="section" style="background: white; margin: 3px"></div>
+
+
+    </div>
+
+
+
+
+
+
+  </div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div style="margin-bottom: 65px"></div>
+

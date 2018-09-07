@@ -1,0 +1,66 @@
+
+<h1>Liste aller Distanzen</h1>
+
+<h3>Aktuell gibt es <%= Distance.all.count %> Distanzen in der Datenbank. Davon sind <%= Distance.where(:status => "OK").count %> Einträge in Ordnung. </h3>
+
+<div style="margin-bottom: 50px"></div>
+<table data-toggle="table" data-sort-name="userid" data-sort-order="desc" data-show-columns="true"  data-search="true"
+       data-show-refresh="true"
+       data-show-toggle="true"
+       data-pagination="true"
+       class="customtable"
+       data-toolbar="#toolbar"
+       data-show-export="true"
+       data-locale="de"
+>
+  <thead>
+  <tr>
+    <th data-field="id" data-sortable="true">ID</th>
+    <th data-editable="start" data-field="origin" data-sortable="true">Start</th>
+    <th data-field="destination" data-sortable="true">Ziel</th>
+    <th data-field="time" data-sortable="true">Fahrtzeit (min)</th>
+    <th data-field="distance" data-sortable="true">Distanz (km)</th>
+    <th data-field="typey" data-sortable="true">Art</th>
+    <th data-field="status" data-sortable="true">Status</th>
+    <th data-field="n1" data-sortable="false"></th>
+
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @distances.each do |d| %>
+      <tr>
+        <td><%= d.id %> </td>
+        <td>
+          <% if d.typey == 1 or d.typey == 3 or d.typey == 4 %>
+                  <%= link_to Customer.find(d.from_id).name, User.find(Customer.find(d.from_id).user_id) %>
+          <% elsif d.typey == 2  %>
+                  <%= link_to Store.find(d.from_id).name, Store.find(d.from_id) %>
+          <% end %>
+        </td>
+        <td>
+          <% if d.typey == 3 or d.typey == 4  %>
+              <%= link_to Store.find(d.to_id).name, Store.find(d.to_id) %>
+          <% elsif d.typey == 2 or d.typey == 1  %>
+              <%= link_to Customer.find(d.to_id).name, User.find(Customer.find(d.to_id).user_id) %>
+          <% end %>
+        </td>
+        <td><%= d.traveltime %> </td>
+        <td><%= d.traveldistance %> </td>
+        <td><%= typey_to_text(d.typey) %> </td>
+        <td><%= d.status %> </td>
+        <td><%= link_to 'Bearbeiten', edit_distance_path(d) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+
+
+
+
+

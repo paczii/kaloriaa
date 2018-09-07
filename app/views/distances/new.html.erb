@@ -1,0 +1,82 @@
+<%
+
+  c = Customer.all.count * Customer.all.count - Customer.all.count - Distance.where(:typey => 1).count
+  s = Customer.all.count * Store.all.count * 2 - Distance.where(:typey => [2,3]).count
+  a = Customer.where.not(:workstreet => nil).count * Store.all.count - Distance.where(:typey => 4).count
+
+  f = Distance.where(:status => ["NOT_FOUND","ZERO_RESULTS","INVALID_REQUEST","OVER_QUERY_LIMIT","REQUEST_DENIED","UNKNOWN_ERROR" ]).count
+%>
+
+
+<h1>Distanzen berechnen</h1>
+
+<div class="col-xs-12">
+  <ul class="menu-items">
+    <h3> Funktionen für Distanzen </h3>
+
+  </ul>
+  <div style="width:100%;border-top:1px solid silver;">
+
+
+
+    <div class="row" style="margin-top: 20px">
+
+      <div class="col-md-4">
+        <%= link_to updatedistances_path, 'data-turbolinks' => false do %>
+            <div class="box">
+              <div class="box-icon"> <span class="fa fa-3x fa-plus"></span> </div>
+              <div class="info">
+                <h4 class="text-center"><%= text_with_badge2("Neue Distanzen berechnen", c+s+a) %></h4>
+                <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="col-md-4">
+        <%= link_to updatedistances_path, 'data-turbolinks' => false do %>
+            <div class="box">
+              <div class="box-icon"> <span class="fa fa-3x fa-refresh"></span> </div>
+              <div class="info">
+                <h4 class="text-center"><%= text_with_badge2("Fehlerhafte Distanzen neu berechnen", f) %></h4>
+                <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="col-md-4">
+        <%= link_to distances_path(:onlybad => 1), 'data-turbolinks' => false do %>
+            <div class="box">
+              <div class="box-icon"> <span class="fa fa-3x fa-search"></span> </div>
+              <div class="info">
+                <h4 class="text-center">Fehlerhafte Distanzen anzeigen</h4>
+                <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="col-md-4">
+        <%= link_to testaddresse_path, 'data-turbolinks' => false do %>
+            <div class="box">
+              <div class="box-icon"> <span class="fa fa-3x fa-search"></span> </div>
+              <div class="info">
+                <h4 class="text-center">Adresse testen</h4>
+                <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+      </div>
+  </div>
+
+  <div style="margin-bottom:65px;" ></div>
+
+</div>
+
+
+
+
+

@@ -1,0 +1,21 @@
+<!--<p id="notice"><%= notice %></p> -->
+
+
+<p>
+  <h1>Post vom:
+  <%=  @micropost.updated_at.to_date %>
+  </h1>
+</p>
+
+<p>
+<div style="padding-top: 50px; padding-bottom: 100px" align="center">
+
+  <%= @micropost.content.html_safe %>
+
+
+</div>
+</p>
+
+
+<%= link_to 'Ändern', edit_micropost_path(@micropost) %> |
+<%= link_to 'Zurück', microposts_path %>

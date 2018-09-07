@@ -1,0 +1,201 @@
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4 item-photo">
+
+            <div class="box" style="text-align: center; display: inline">
+              <% if @order.status == 1%>
+              <div class="box-icon" style="height: 220px; width: 220px"> <span class="fa fa-5x fa-sticky-note"></span> </div>
+              <% elsif @order.status == 2%>
+                  <div class="box-icon" style="height: 220px; width: 220px"> <span class="fa fa-5x fa-truck"></span> </div>
+
+                  <% else %>
+                  <div class="box-icon" style="height: 220px; width: 220px"> <span class="fa fa-5x fa-check-square"></span> </div>
+
+                  <% end %>
+
+              <div class="info">
+                <h4 class="text-center"><%= orderstatus_to_text(@order.status) %></h4>
+              </div>
+            </div>
+
+
+
+    </div>
+
+
+    <div class="col-xs-7" style="border:0px solid gray; border-left:1px solid #9b9b9b;">
+      <!-- Datos del vendedor y titulo del producto -->
+      <h1>Bestellung <%= @order.id %> </h1>
+      <h5>Bestelltung von: <%= Customer.find(@order.customer_id).name %></h5>
+
+
+      <h6 class="title-price" style="margin-bottom:15px;" ></h6>
+
+
+
+
+      <div class="section" style="padding-bottom:20px;">
+        <h3 style="margin-top:15px;">Allgemeine Daten </h3>
+        <h4 style="margin-top:15px;">Methode: <%= method_to_text(@order.allocationmethod) %> </h4>
+        <h4 style="margin-top:15px;">Tag: <%= @order.day.to_time.strftime('%d.%m.%Y (%a)') %> </h4>
+        <h4 style="margin-top:15px;">Zeitfenster: <%= number_to_time(@order.timewindow) %> Uhr</h4>
+
+      </div>
+
+      <div class="section" style="background: white; margin: 3px"></div>
+
+      <div class="section" style="padding-bottom:20px;">
+        <h3 style="margin-top:15px;">Status </h3>
+        <h4 style="margin-top:15px;">Status: <%= orderstatus_to_text(@order.status) %> </h4>
+        <% if @order.status == 2 or @order.status == 3 %>
+        <h4 style="margin-top:15px;">Zugeordnetes Geschäft: <%= Store.find(@order.allocatedstore).name %> </h4>
+        <h4 style="margin-top:15px;">Zugeordneter Fahrer: <%= Driver.find(@order.allocateddriver).name %> </h4>
+        <h4 style="margin-top:15px;">Geschätzte Ankunftszeit: <%= singlenumber_to_time(@order.estimatedtime) %> Uhr</h4>
+        <% end %>
+      </div>
+
+      <div class="section" style="background: white; margin: 3px"></div>
+
+      <div class="section" style="padding-bottom:20px;">
+        <h3 style="margin-top:15px;">Logistische Daten </h3>
+        <h4 style="margin-top:15px;">Benötigte Boxen: <%= @order.neededboxes %> </h4>
+        <h4 style="margin-top:15px;">Benötigte Kühlboxen: <%= @order.neededcoolingboxes%> </h4>
+        <h4 style="margin-top:15px;">Benötigte Tiefkühlboxen: <%= @order.neededfreezingboxes %></h4>
+
+      </div>
+
+
+      <div class="section" style="background: white; margin: 3px"></div>
+
+
+    </div>
+
+
+
+    <div class="col-xs-11" style="margin-bottom: 70px">
+      <ul class="menu-items">
+        <h3> Bestellte Produkte </h3>
+
+
+      </ul>
+      <div style="width:100%;border-top:1px solid silver;">
+
+        <div class="row" style="margin-top: 20px">
+
+
+
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th></th>
+                <th>Produkt</th>
+                <th>Menge</th>
+                <th>Preis</th>
+              </tr>
+              </thead>
+              <tbody>
+
+
+              <%
+
+                @totalprice = 0
+
+                array = @order.products.split(",")
+                array.each do |items|
+
+                  productitemssplit = items.split("-")
+                  product = productitemssplit[0]
+                  number = productitemssplit[1]
+
+                  myproduct = Product.find(product)
+
+                  if myproduct.discountprice != nil
+                    productsprice = myproduct.discountprice * number.to_f
+                  else
+                    productsprice = myproduct.price * number.to_f
+                  end
+
+
+
+                  euro = productsprice.round(2).to_s.split(".")[0]
+                  cent0 = productsprice.round(2).to_s.split(".")[1]
+                  if cent0.length == 1
+                    cent = cent0 + "0"
+                  else
+                    cent = cent0
+                  end
+
+                  pricestring = euro + "," + cent + " €"
+
+                  @totalprice += productsprice
+
+              %>
+                  <tr>
+                    <td><%= image_tag myproduct.picture, width: 30 %></td>
+                    <td class="tableclassy"><%= link_to myproduct.name, myproduct, class: "linkclass", 'data-turbolinks' => false %></td>
+
+
+                    <td><%= number %></td>
+
+                    <% if myproduct.discountprice != nil %>
+                        <td style="color: #e60028"><%= pricestring %></td>
+                    <% else %>
+                        <td><%= pricestring %></td>
+                    <% end %>
+
+                  </tr>
+
+              <% end %>
+
+
+              <%
+                euro = @totalprice.round(2).to_s.split(".")[0]
+                cent0 = @totalprice.round(2).to_s.split(".")[1]
+                if cent0.length == 1
+                  cent = cent0 + "0"
+                else
+                  cent = cent0
+                end
+
+                totalpricestring = euro + "," + cent + " €"
+              %>
+              </tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td style="text-align: right; font-size: 18px;">Gesamtpreis: </td>
+                <td style="font-size: 18px"><b><%= totalpricestring %></b></td>
+                <td></td>
+              </tr>
+              <tfoot>
+
+
+              </tfoot>
+            </table>
+          </div>
+
+
+
+
+
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>
+</div>
+
+
+

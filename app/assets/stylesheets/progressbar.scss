@@ -1,0 +1,154 @@
+@import "compass/css3";
+
+// Mixins
+
+@mixin prefix ($property, $value,
+                 $moz:    true,
+                 $webkit: true,
+                 $o:      false,
+                 $ms:     true,
+                 $spec:   true) {
+  @if $moz    {    -moz-#{$property}: $value; }
+  @if $webkit { -webkit-#{$property}: $value; }
+  @if $o      {      -o-#{$property}: $value; }
+  @if $ms     {     -ms-#{$property}: $value; }
+  @if $spec   {         #{$property}: $value; }
+}
+
+// Animations
+
+@keyframes bar-fill {
+  0% { width: 0; }
+}
+@-webkit-keyframes bar-fill {
+  0% { width: 0; }
+}
+@-moz-keyframes bar-fill {
+  0% { width: 0; }
+}
+@-o-keyframes bar-fill {
+  0% { width: 0; }
+}
+
+// Graph stuff
+
+.bar-graph {
+  list-style: none;
+  margin: 50px 0px auto;
+
+}
+
+.bar-wrap {
+  font-family: Lato;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: table;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 8px;
+  border-radius: 0px;
+  background: rgba(0, 0, 0, 0.08);
+  height: 50px;
+  color: rgb(255, 255, 255);
+  border: solid rgba(255, 255, 255, 0.92) 0px;
+  text-align: left;
+  padding-top: -1em;
+
+
+}
+
+.bar-fill {
+  @include prefix(animation, bar-fill 2s);
+  background-color: rgba(61, 61, 61, 0.54);
+  display: flex;
+  //height: 50px;
+  width: 0px;
+  //padding: 0.7rem 1.6rem 1rem;
+  font-size: 2.4rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: visible ;
+  float: right;
+}
+
+.showres {
+  font-family: Lato;
+  color: #ffffff;
+  font-size: 1.6em;
+  background: rgba(0, 0, 0, 0);
+  padding: 1rem 1.6rem 1rem;
+  border-left: solid rgba(255, 255, 255, 0.12) 2px;
+  text-decoration: none;
+  width: 45px;
+  text-align: center;
+  //margin-left: 10px;
+  float: right;
+  display:flex;
+  align-items: center; /* Vertical center alignment */
+  justify-content: center; /* Horizontal center alignment */
+}
+
+.barbefore{
+  font-family: Lato;
+  color: #ffffff;
+  font-size: 1.3em;
+  background: rgba(0, 0, 0, 0);
+  padding: 0rem 1.6rem 0rem;
+  border-right: solid rgba(255, 255, 255, 0.12) 2px;
+  text-decoration: none;
+  width: 100%;
+  max-width: 400px;
+  //margin-left: 10px;
+  float: left;
+  display:flex;
+  align-items: center; /* Vertical center alignment */
+  justify-content: left; /* Horizontal center alignment */
+  text-align: left;
+}
+
+.divforbar{
+  font-family: Lato;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  max-width: 100px;
+  float: right;
+}
+
+.bar-wrap2 {
+  font-family: Lato;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 8px;
+  border-radius: 0px;
+  background: rgba(0, 0, 0, 0.07);
+  //height: 50px;
+  color: rgb(255, 255, 255);
+  border: solid rgba(255, 255, 255, 0.92) 0px;
+  text-align: left;
+
+  text-overflow: ellipsis;
+  overflow: hidden ;
+  white-space: pre-wrap;
+}

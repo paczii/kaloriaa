@@ -1,0 +1,47 @@
+
+<%= bootstrap_form_for(@product, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6") do |f| %>
+
+    <br>
+    <h3> Allgemeine Daten </h3>
+
+    <br>
+<% categoryarray = Option.find_by_name("categorys").value.split("-")%>
+    <br>
+
+    <%= f.text_field :name, label: "Name", required: true %>
+    <%= f.text_field :brand, label: "Marke", required: true %>
+    <%= f.number_field :price, label: "Preis", required: true, step: :any %>
+    <%= f.number_field :discountprice, label: "Angebotspreis", step: :any %>
+    <%= f.select :category, categoryarray, {label: "Kategorie", label_class: "labeltext"}, {class: "selectpicker"} %>
+    <%= f.text_field :picture, label: "Bild", required: true %>
+
+
+    <h3> Inhalt </h3>
+    <br>
+    <%= f.text_area :description, label: "Beschreibung", required: true %>
+    <%= f.form_group do %>
+        <%= f.check_box :bio, label: "Bio" %>
+        <%= f.check_box :vegan, label: "Vegan", label_class: "labeltext-light" %>
+        <% end %>
+
+    <br>
+
+    <h3> Eigenschaften </h3>
+    <br>
+    <%= f.number_field :weight, label: "Gewicht", required: true, step: :any %>
+    <%= f.text_field :volume, label: "Volumen", required: true %>
+    <%= f.select :durability, [["Keine", 0], ["Kühlschrank", 1], ["Kühlfach", 2]], {label: "Kühlung", label_class: "labeltext"}, {class: "selectpicker", required: true } %>
+
+    <br>
+
+    <%= f.form_group do %>
+        <h1 > <%= f.submit "Abschicken", class: "btn btn-success" , disabled: true %></h1>
+        <h6 style="margin-top: -20px;">Alle Felder müssen ausgefüllt werden. (Außer Angebotspreis)</h6>
+
+
+    <% end %>
+
+    <div style="margin-bottom: 100px"></div>
+<% end %>
+
+

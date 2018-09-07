@@ -1,0 +1,17 @@
+<h1>Post bearbeiten</h1>
+
+<div style="padding-top: 50px; padding-bottom: 100px" align="center">
+
+  <%= form_for @micropost do |form|  %>
+      <% #form.cktext_area :content, class: 'someclass', ckeditor: { language: 'de'}   %>
+      <% #cktext_area :page, :info, cols: 40, ckeditor: { uiColor: '#AADC6E', toolbar: 'mini' } %>
+      <%= cktext_area :micropost, :content, cols: 40, ckeditor: { toolbar: 'mini' } %>
+
+      <%= form.submit "Save changes", class: "btn btn-primary" %>
+
+  <% end %>
+
+</div>
+
+<%= link_to 'Anzeigen', @micropost %> |
+<%= link_to 'Zurück', :back %>

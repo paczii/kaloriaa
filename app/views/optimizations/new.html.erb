@@ -1,0 +1,330 @@
+
+<% if Option.find_by_name("gamsstatus").value == "0" %>
+     <script>
+       document.getElementById("selectionsection").style.display = "none";
+     </script>
+    <div class="alert mywaitnotice" >
+      <h1 >GAMS Pfad ist falsch oder nicht getestet.</h1>
+
+      <div class="spinner" style="width: 200px; ">
+        <span class="fa fa-5x fa-exclamation"></span>
+
+      </div>
+<br>
+      <h3 style="font-size: 24px">Bitte den Pfad in den <%= link_to "Einstellungen", options_path %> eintragen und testen.
+        <br> <br>Danach können Optimierungen durchgeführt werden.</h3>
+
+
+    </div>
+<% else %>
+
+<div id="pleasewait" class="alert mywaitnotice" style="display: none;">
+  <h1 style="font-size: 24px">Ihre Anfrage wird bearbeitet. Bitte warten..</h1>
+
+  <div class="spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+</div>
+
+<div id="sel">
+
+
+<h1>Neue Optimierung</h1>
+
+<!-- SELECT OPT  -->
+
+<div id="selectionsection">
+
+
+  <div class="col-xs-12" style="margin-bottom: 170px">
+
+    <div class="row" style="margin-top: 50px">
+
+      <div class="col-md-4" onclick="return showNotice(1)">
+            <div class="box">
+              <div class="box-icon"> <span class="fa fa-3x fa-car"></span> </div>
+              <div class="info">
+                <h4 class="text-center">Wie gewünscht</h4>
+                <p style="font-size: 12px; "> </p>
+              </div>
+            </div>
+      </div>
+
+
+      <div class="col-md-4" onclick="return showNotice(2)">
+            <div class="box">
+              <div class="box-icon"> <span class="fa fa-3x fa-building-o"></span> </div>
+              <div class="info">
+                <h4 class="text-center">Pick-Up Only  </h4>
+                <p style="font-size: 12px; "> </p>
+              </div>
+            </div>
+      </div>
+
+      <div class="col-md-4" onclick="return showNotice(3)">
+            <div class="box">
+              <div class="box-icon"> <span class="fa fa-3x fa-home"></span> </div>
+              <div class="info">
+                <h4 class="text-center">Home-Delivery Only</h4>
+                <p style="font-size: 12px; "> </p>
+              </div>
+            </div>
+      </div>
+
+
+
+    </div>
+
+
+  </div>
+</div>
+<!-- SELECT OPT END  -->
+
+
+
+  <!-- REAL CASE FORM  -->
+  <div id="formforrealcase" style="display: none;">
+
+
+
+    <%= bootstrap_form_for(@optimization, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6") do |f| %>
+        <br>
+
+        <%= f.hidden_field :optimizationtype, value: 1, required: true %>
+
+        <h3 style="margin-bottom: 20px; ">Welchen Namen soll die Optimierung haben? (optional) </h3>
+
+        <%= f.text_field :name %>
+
+        <br>
+
+
+        <h3 style="margin-bottom: 20px; ">Welche Geschäfte sollen in die Optimierung einbezogen werden? </h3>
+
+        <%= f.form_group :stores do %>
+            <%= f.radio_button :stores, 0, label: "Alle", checked: true %>
+            <%= f.radio_button :stores, 12, label: "Alle Geschäfte" %>
+            <%= f.radio_button :stores, 123, label: "Geschäfte und Pick-Up Stationen" %>
+            <%= f.radio_button :stores, 124, label: "Geschäfte und Zentrallager" %>
+            <%= f.radio_button :stores, 125, label: "Geschäfte und Hubs" %>
+            <%= f.radio_button :stores, 34, label: "Pick-Up Stationen und Zentrallager" %>
+            <%= f.radio_button :stores, 35, label: "Pick-Up Stationen und Hubs" %>
+            <%= f.radio_button :stores, 345, label: "Pick-Up Stationen, Zentrallager und Hubs" %>
+        <% end %>
+
+        <br>
+
+        <h3 style="margin-bottom: 20px; ">Welchen Status dürfen die Bestellungen haben? </h3>
+
+        <%= f.form_group :statustype do %>
+            <%= f.radio_button :statustype, 12, label: "Alle", checked: true %>
+            <%= f.radio_button :statustype, 1, label: orderstatus_to_text(1) %>
+            <%= f.radio_button :statustype, 2, label: orderstatus_to_text(2) %>
+        <% end %>
+
+
+
+        <%= f.form_group do %>
+            <h1> <%= f.submit "Abschicken", class: "btn btn-success", onclick: "return showWait()" , disabled: true  %></h1>
+            <h6 style="margin-top: -20px;">Alle Felder müssen ausgefüllt werden.</h6>
+
+
+        <% end %>
+
+        <div style="margin-bottom: 100px"></div>
+    <% end %>
+
+  </div>
+
+  <!-- REAL CASE FORM END -->
+
+
+
+
+<!-- PICK UP FORM  -->
+<div id="formforpickup" style="display: none;">
+
+
+
+  <%= bootstrap_form_for(@optimization, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6") do |f| %>
+      <br>
+
+      <h3 style="margin-bottom: 20px; ">Welchen Namen soll die Optimierung haben? (optional) </h3>
+
+      <%= f.text_field :name %>
+
+      <br>
+
+      <h3 style="margin-bottom: 20px; ">Welches Pick-Up Modell soll angewandt werden? </h3>
+
+      <%= f.form_group :optimizationtype do %>
+          <%= f.radio_button :optimizationtype, 2, label: "Pick-Up from Home", checked: true %>
+          <%= f.radio_button :optimizationtype, 4, label: "Pick-Up from Work" %>
+      <% end %>
+
+      <br>
+
+      <h3 style="margin-bottom: 20px; ">Welche Geschäfte sollen in die Optimierung einbezogen werden? </h3>
+
+      <%= f.form_group :stores do %>
+          <%= f.radio_button :stores, 0, label: "Alle", checked: true %>
+          <%= f.radio_button :stores, 12, label: "Geschäfte" %>
+          <%= f.radio_button :stores, 3, label: "Pick-Up Stations" %>
+      <% end %>
+
+      <br>
+      <h3 style="margin-bottom: 20px; ">Welche Bestellungen sollen in die Optimierung einbezogen werden? </h3>
+
+      <%= f.form_group :orders do %>
+          <%= f.radio_button :orders, 0, label: "Alle", checked: true %>
+          <%= f.radio_button :orders, 12, label: "Alle Pick-Up" %>
+          <%= f.radio_button :orders, 1, label: "Pick-Up Home" %>
+          <%= f.radio_button :orders, 2, label: "Pick-Up Work" %>
+      <% end %>
+
+      <br>
+
+      <h3 style="margin-bottom: 20px; ">Welchen Status dürfen die Bestellungen haben? </h3>
+
+      <%= f.form_group :statustype do %>
+          <%= f.radio_button :statustype, 12, label: "Alle", checked: true %>
+          <%= f.radio_button :statustype, 1, label: orderstatus_to_text(1) %>
+          <%= f.radio_button :statustype, 2, label: orderstatus_to_text(2) %>
+      <% end %>
+
+
+
+      <%= f.form_group do %>
+          <h1 > <%= f.submit "Abschicken", class: "btn btn-success", onclick: "return showWait()", disabled: true  %></h1>
+          <h6 style="margin-top: -20px;">Alle Felder müssen ausgefüllt werden.</h6>
+
+
+      <% end %>
+
+      <div style="margin-bottom: 100px"></div>
+  <% end %>
+
+</div>
+
+<!-- PICK UP FORM END -->
+
+<!-- PICK UP FORM  -->
+<div id="formfordelivery" style="display: none;">
+
+
+
+  <%= bootstrap_form_for(@optimization, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6") do |f| %>
+
+      <%= f.hidden_field :optimizationtype, value: 3, required: true %>
+
+      <br>
+
+
+      <h3 style="margin-bottom: 20px; ">Welchen Namen soll die Optimierung haben? (optional) </h3>
+
+      <%= f.text_field :name %>
+
+      <br>
+
+      <h3 style="margin-bottom: 20px; ">Welche Geschäfte sollen in die Optimierung einbezogen werden? </h3>
+
+      <%= f.form_group :stores do %>
+          <%= f.radio_button :stores, 245, label: "Alle", checked: true %>
+          <%= f.radio_button :stores, 2, label: "Geschäfte mit Delivery" %>
+          <%= f.radio_button :stores, 4, label: "Zentrallager" %>
+          <%= f.radio_button :stores, 5, label: "Hubs" %>
+      <% end %>
+
+      <br>
+
+      <h3 style="margin-bottom: 20px; ">Welche Bestellungen sollen in die Optimierung einbezogen werden? </h3>
+
+      <%= f.form_group :orders do %>
+          <%= f.radio_button :orders, 3, label: "Home-Delivery", checked: true %>
+          <%= f.radio_button :orders, 12, label: "Alle Pick-Up" %>
+          <%= f.radio_button :orders, 0, label: "Alle" %>
+      <% end %>
+
+      <br>
+
+      <h3 style="margin-bottom: 20px; ">Welchen Status dürfen die Bestellungen haben? </h3>
+
+      <%= f.form_group :statustype do %>
+          <%= f.radio_button :statustype, 12, label: "Alle", checked: true %>
+          <%= f.radio_button :statustype, 1, label: orderstatus_to_text(1) %>
+          <%= f.radio_button :statustype, 2, label: orderstatus_to_text(2) %>
+      <% end %>
+
+      <%= f.form_group do %>
+          <h1 > <%= f.button "Abschicken", class: "btn btn-success", onclick: "return showWait()", disabled: true  %></h1>
+          <h6 style="margin-top: -20px;">Alle Felder müssen ausgefüllt werden.</h6>
+
+
+      <% end %>
+
+      <div style="margin-bottom: 100px"></div>
+  <% end %>
+
+</div>
+
+<!-- PICK UP FORM END -->
+
+
+  </div>
+
+    <h1 style="padding-top: -500px; display: none" id="backbutton" >
+      <div onclick="return back()" class="btn btn-success" style="max-width: 200px" > Zurück </div>
+    </h1>
+
+
+
+
+<script>
+
+  function showNotice(id){
+
+    if (id == 3){
+    document.getElementById("selectionsection").style.display = "none";
+    document.getElementById("formfordelivery").style.display = "block";
+      document.getElementById("backbutton").style.display = "block";
+
+    }
+
+    if (id == 2){
+      document.getElementById("selectionsection").style.display = "none";
+      document.getElementById("formforpickup").style.display = "block";
+      document.getElementById("backbutton").style.display = "block";
+
+    }
+
+    if (id == 1){
+      document.getElementById("selectionsection").style.display = "none";
+      document.getElementById("formforrealcase").style.display = "block";
+      document.getElementById("backbutton").style.display = "block";
+
+    }
+
+  }
+
+  function showWait() {
+    document.getElementById("sel").style.display = "none";
+    document.getElementById("pleasewait").style.display = "block";
+
+  }
+
+  function back() {
+    document.getElementById("selectionsection").style.display = "block";
+    document.getElementById("formfordelivery").style.display = "none";
+    document.getElementById("formforpickup").style.display = "none";
+    document.getElementById("formforrealcase").style.display = "none";
+    document.getElementById("backbutton").style.display = "none";
+
+  }
+
+</script>
+
+
+
+    <% end %>

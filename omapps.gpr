@@ -1,0 +1,14 @@
+[PROJECT]
+
+[RP:TRANSPORTMODELL_V2]
+1=
+
+[OPENWINDOW_1]
+FILE0=C:\Sites\sample_app\Transportmodell_v2.gms
+FILE1=C:\Sites\sample_app\Transportmodell_v3_Input_Instanz1.inc
+FILE2=C:\Sites\sample_app\Transportmodell_v3_Input_Instanz1.inc
+MAXIM=1
+TOP=50
+LEFT=50
+HEIGHT=400
+WIDTH=400

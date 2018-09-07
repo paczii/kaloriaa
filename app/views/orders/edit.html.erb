@@ -1,0 +1,50 @@
+<div id="pleasewait" class="alert mywaitnotice" style="display: none;">
+  <h1 style="font-size: 24px">Ihre Anfrage wird bearbeitet. Bitte warten..</h1>
+
+  <div class="spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+</div>
+
+<div id="selectionsection">
+
+
+
+<h1 style="margin-bottom: 70px">Zeitfenster</h1>
+
+
+  <%
+    twstring = Option.find_by_name("timewindows").value
+    timewindows = twstring.split(",")
+
+    timewindows.each do |timewindow|
+
+      timetext = number_to_time(timewindow)
+  %>
+
+      <h3 style="margin: 40px"><%= link_to timetext + " Uhr", demoversion_path, class: "btn-success twbtn", :onclick => "return showNotice()"  %></h3>
+
+
+<%  end  %>
+
+
+
+  <div style="margin-bottom: 150px"></div>
+
+
+
+</div>
+
+<script>
+
+  function showNotice(){
+    document.getElementById("selectionsection").style.display = "none";
+    document.getElementById("pleasewait").style.display = "block";
+
+  }
+</script>
+
+
+

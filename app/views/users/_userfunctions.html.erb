@@ -1,0 +1,53 @@
+
+
+          <div class="col-md-4">
+            <%= link_to products_path do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-cart-plus"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Warenkorb zusammenstellen</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+          <div class="col-md-4">
+            <%= link_to current_cart do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-shopping-cart"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Warenkorb einsehen</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+          <div class="col-md-4">
+            <%= link_to products_path(:category => "Favoriten") do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-star"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Favoriten</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+          <div class="col-md-4">
+            <%= link_to orders_path(:mycustomer => current_customer.id), 'data-turbolinks' => false do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-sticky-note"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Bestellungen</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+
+
+

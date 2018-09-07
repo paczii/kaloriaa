@@ -1,0 +1,1 @@
+json.extract! @optimization, :id, :optimizationtype, :orders, :drivers, :totalboxes, :totalcoolingboxes, :totalfreezingboxes, :allocation, :routes, :totaltraveltime, :totaldistance, :turnover, :productcosts, :worktimecosts, :drivingcosts, :totalcosts, :profit, :useddrivers, :usedstores, :created_at, :updated_at

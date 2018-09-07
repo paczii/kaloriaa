@@ -1,0 +1,28 @@
+<h1>Neuen Vergleich erstellen</h1>
+<div style="margin-bottom: 70px"></div>
+
+
+<%= bootstrap_form_for(@compare, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6") do |f| %>
+
+
+
+    <%= f.collection_select :opt1, Optimization.where.not(:name => nil), :id, :name, label_class: "labeltext", label: "Optimierung 1", required: true %>
+    <%= f.collection_select :opt2, Optimization.where.not(:name => nil), :id, :name, label_class: "labeltext", label: "Optimierung 2", required: true %>
+    <%= f.collection_select :opt3, Optimization.where.not(:name => nil), :id, :name, label_class: "labeltext", label: "Optimierung 3", :include_blank => true%>
+    <%= f.collection_select :opt4, Optimization.where.not(:name => nil), :id, :name, label_class: "labeltext", label: "Optimierung 4", :include_blank => true %>
+    <%= f.collection_select :opt5, Optimization.where.not(:name => nil), :id, :name, label_class: "labeltext", label: "Optimierung 5", :include_blank => true %>
+
+
+
+    <br>
+
+    <%= f.form_group do %>
+        <h1 > <%= f.submit "Vergleichen", class: "btn btn-success" %></h1>
+        <h6 style="margin-top: -20px;">Mindestens 2 Optimierungen müssen ausgewählt werden.</h6>
+
+
+    <% end %>
+
+    <div style="margin-bottom: 100px"></div>
+<% end %>
+

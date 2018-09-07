@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  brand: MyString
+  price: 1.5
+  discountprice: 1.5
+  description: MyString
+  weight: 1.5
+  ingredients: MyString
+  size: MyString
+  sqm: 1.5
+  vegan: false
+  bio: false
+  picture: MyString
+  cool: false
+  freeze: false
+  durability: MyString
+  category: MyString
+
+two:
+  name: MyString
+  brand: MyString
+  price: 1.5
+  discountprice: 1.5
+  description: MyString
+  weight: 1.5
+  ingredients: MyString
+  size: MyString
+  sqm: 1.5
+  vegan: false
+  bio: false
+  picture: MyString
+  cool: false
+  freeze: false
+  durability: MyString
+  category: MyString

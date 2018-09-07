@@ -1,0 +1,43 @@
+
+<%= bootstrap_form_for(@customer, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6") do |f| %>
+
+    <br>
+    <h3> Allgemeine Daten </h3>
+
+    <br>
+
+    <br>
+
+    <%= f.text_field :name, label: "Name", required: true %>
+
+    <%= f.select :costmodel, [["Pay per Order", 1], ["Abonnement", 2]], {label: "Kostenmodel", label_class: "labeltext"}, {class: "selectpicker"} %>
+
+
+
+    <h3> Heimatsadresse </h3>
+    <br>
+    <%= f.text_field :city, label: "Stadt", required: true %>
+    <%= f.number_field :zip, label: "PLZ", required: true %>
+    <%= f.text_field :street, label: "Straße und Hausnummer", required: true %>
+
+    <br>
+
+    <h3> Arbeitsadresse </h3>
+    <br>
+    <%= f.text_field :workcity, label: "Stadt", required: true %>
+    <%= f.number_field :workzip, label: "PLZ", required: true %>
+    <%= f.text_field :workstreet, label: "Straße und Hausnummer", required: true %>
+
+    <br>
+
+    <%= f.form_group do %>
+        <h1 > <%= f.submit "Abschicken", class: "btn btn-success", disabled: true %></h1>
+        <h6 style="margin-top: -20px;">Alle Felder müssen ausgefüllt werden.</h6>
+
+
+    <% end %>
+
+    <div style="margin-bottom: 100px"></div>
+<% end %>
+
+

@@ -1,0 +1,93 @@
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4 item-photo">
+      <%= gravatar_image_tag(@user.email.gsub('spam', 'mdeering'), :alt => @user.name, :gravatar => { :size => 250 , :default => 'https://cdn3.iconfinder.com/data/icons/faticons/32/user-01-512.png' , :include_size_attributes => false }) %>
+    </div>
+
+
+    <div class="col-xs-7" style="border:0px solid gray; border-left:1px solid #9b9b9b;">
+      <!-- Datos del vendedor y titulo del producto -->
+      <h1><%= @user.name %></h1>
+      <h5>Account: Kunde</h5>
+
+
+          <h6 class="title-price" style="margin-bottom:15px;" ></h6>
+
+
+
+
+      <div class="section" style="padding-bottom:20px;">
+        <h3 style="margin-top:15px;">Accountdaten </h3>
+        <h4 style="margin-top:15px;">Username: <%= @user.name %> </h4>
+        <h4 style="margin-top:15px;">E-Mail: <%= @user.email %></h4>
+        <h4 style="margin-top:15px;">Mitglied seit: <%= @user.created_at.strftime("%d.%m.%y") %></h4>
+        <h6 class="title-price" style="margin-bottom:15px; font-size: 16px; max-width: 260px;"><%= link_to "Account Daten bearbeiten", edit_user_path(@user.id), class: "btn btn-success" %></h6>
+
+      </div>
+
+      <div class="section" style="background: white; margin: 3px"></div>
+
+      <% @customer = Customer.find_by_user_id(@user.id)%>
+      <div class="section" style="padding-bottom:20px;">
+        <h3 style="margin-top:15px;">Kundendaten </h3>
+        <h4 style="margin-top:15px;">Name: <%= @customer.name %> </h4>
+        <h4 style="margin-top:15px;">Kostenmodell: <%= costmodel_to_text(@customer.costmodel) %></h4>
+        <h4 style="margin-top:15px;">Heim-Adresse: <br> <div style="margin-top: 3px"><%= @customer.zip %> <%= @customer.city %> <br> <%= @customer.street %></div></h4>
+        <h4 style="margin-top:15px;">Arbeits-Adresse: <br> <div style="margin-top: 3px"><%= @customer.workzip %> <%= @customer.workcity %> <br> <%= @customer.workstreet %></div></h4>
+
+        <h6 class="title-price" style="margin-bottom:15px; font-size: 16px; max-width: 260px;"><%= link_to "Kundendaten bearbeiten", edit_customer_path(@customer.id), class: "btn btn-success" %></h6>
+
+      </div>
+
+
+      <div class="section" style="background: white; margin: 3px"></div>
+
+
+    </div>
+
+
+
+    <div class="col-xs-11" style="margin-bottom: 70px">
+      <ul class="menu-items">
+        <h3> Funktionen </h3>
+
+      </ul>
+      <div style="width:100%;border-top:1px solid silver;">
+
+
+
+        <div class="row" style="margin-top: 20px">
+
+
+
+          <%= if current_user.admin?
+                render 'useradminfunctions'
+              else
+                render 'userfunctions'
+              end%>
+
+
+
+
+
+
+
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+

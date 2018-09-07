@@ -1,0 +1,34 @@
+
+
+
+<div class="col-md-4">
+  <%
+    @customer = Customer.find_by_user_id(@user.id)
+    @cart = Cart.find_by_customer_id(@customer.id)
+  %>
+  <%= link_to @cart do %>
+      <div class="box">
+        <div class="box-icon"> <span class="fa fa-3x fa-shopping-cart"></span> </div>
+        <div class="info">
+          <h4 class="text-center">Warenkorb einsehen</h4>
+          <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+
+<div class="col-md-4">
+  <%= link_to orders_path(:mycustomer => @customer.id), 'data-turbolinks' => false do %>
+      <div class="box">
+        <div class="box-icon"> <span class="fa fa-3x fa-sticky-note"></span> </div>
+        <div class="info">
+          <h4 class="text-center">Bestellungen einsehen</h4>
+          <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+
+

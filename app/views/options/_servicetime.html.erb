@@ -1,0 +1,28 @@
+
+<%= bootstrap_form_for(Option.find_by_name("servicetime"), layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6") do |f| %>
+
+
+
+
+    <h3 style="font-size: 30px" >Pauschale Servicezeit pro Bestellung beim Kunden</h3>
+
+    <div style="margin-bottom: 70px"></div>
+
+
+    <%= f.number_field :value, label: "Zeit in Minuten", required: true, step: :any %>
+
+
+
+
+
+    <br>
+
+    <%= f.form_group do %>
+        <h1 > <%= f.submit "Bestätigen", class: "btn btn-success" %></h1>
+        <h6 style="margin-top: -20px;">Alle Felder müssen ausgefüllt werden.</h6>
+
+
+    <% end %>
+
+    <div style="margin-bottom: 100px"></div>
+<% end %>

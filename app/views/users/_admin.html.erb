@@ -1,0 +1,214 @@
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4 item-photo">
+      <%= gravatar_image_tag(@user.email.gsub('spam', 'mdeering'), :alt => @user.name, :gravatar => { :size => 300 , :default => 'https://cdn3.iconfinder.com/data/icons/faticons/32/user-01-512.png' , :include_size_attributes => false }) %>
+
+    </div>
+    <div class="col-xs-7" style="border-left:1px solid #9b9b9b;">
+      <!-- Datos del vendedor y titulo del producto -->
+      <h1><%= @user.name %></h1>
+      <h5>Account: Administrator</h5>
+
+
+      <h6 class="title-price"><small></small></h6>
+      <h1 style="margin-bottom:15px; font-size: 32px">
+
+
+        <span class="cbp-pgprice"></span>
+
+
+      </h1>
+
+
+      <div class="section" >
+        <h3 style="margin-top:15px;">Auf einen Blick </h3>
+        <h4 style="margin-top:15px;">Geschäfte: <%= Store.all.count %></h4>
+        <h4 style="margin-top:15px;">Fahrer: <%= Driver.all.count %></h4>
+        <h4 style="margin-top:15px;">Offene Bestellungen: <%= Order.where(status: 1).count %></h4>
+        <h4 style="margin-top:15px;">Registrierter Kunden: <%= Customer.all.count %></h4>
+        <h4 style="margin-top:15px;">Produkte: <%= Product.all.count %></h4>
+      </div>
+
+      <h6  style="margin-bottom:15px;" ></h6>
+
+
+    </div>
+
+
+
+    <div class="col-xs-11">
+      <ul class="menu-items">
+        <h3> Funktionen </h3>
+
+      </ul>
+      <div style="width:100%;border-top:1px solid silver;">
+
+
+
+        <div class="row" style="margin-top: 20px">
+
+          <div class="col-md-4">
+            <%= link_to new_distance_path, 'data-turbolinks' => false do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-plus"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Distanzen berechnen</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+
+          <div class="col-md-4">
+            <%= link_to stores_path, 'data-turbolinks' => false do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-industry"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Geschäfte</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+          <div class="col-md-4">
+            <%= link_to customers_path, 'data-turbolinks' => false do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-user"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Kunden</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+          <div class="col-md-4">
+            <%= link_to productslist_path, 'data-turbolinks' => false do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-archive"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Produkte</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+          <div class="col-md-4">
+            <%= link_to orders_path, 'data-turbolinks' => false do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-sticky-note"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Bestellungen</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+          <div class="col-md-4">
+            <%= link_to vehicles_path, 'data-turbolinks' => false do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-truck"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Fahrzeugtypen</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+
+          <div class="col-md-4">
+            <%= link_to stocks_path, 'data-turbolinks' => false do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-cubes"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Lagerbestände</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+          <div class="col-md-4">
+            <%= link_to drivers_path, 'data-turbolinks' => false do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-address-card"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Fahrer</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+          <div class="col-md-4">
+            <%= link_to distances_path, 'data-turbolinks' => false do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-level-up"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Distanzen</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+          <div class="col-md-4">
+            <%= link_to options_path, 'data-turbolinks' => false do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-gears"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Einstellungen</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+          <div class="col-md-4">
+            <%= link_to routes_path, 'data-turbolinks' => false do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-road"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Touren</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+          <div class="col-md-4">
+            <%= link_to optimizations_path, 'data-turbolinks' => false do %>
+                <div class="box">
+                  <div class="box-icon"> <span class="fa fa-3x fa-gear"></span> </div>
+                  <div class="info">
+                    <h4 class="text-center">Optimierungen</h4>
+                    <p><!-- PLATZHALTER FÜR MÖGLICHEN TEXT--></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>
+
+
+

@@ -1,0 +1,6 @@
+names no
+threads 1
+memoryemphasis 1
+nodesel 0
+varsel 3
+cuts -1

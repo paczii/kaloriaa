@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  store_id: 1
+  vehicle: 1
+  route: MyString
+  totaltraveltime: 1.5
+  totalemissions: 1.5
+  totaldistance: 1.5
+  boxes: 1.5
+  coolingboxes: 1.5
+  freezingboxes: 1.5
+
+two:
+  store_id: 1
+  vehicle: 1
+  route: MyString
+  totaltraveltime: 1.5
+  totalemissions: 1.5
+  totaldistance: 1.5
+  boxes: 1.5
+  coolingboxes: 1.5
+  freezingboxes: 1.5
