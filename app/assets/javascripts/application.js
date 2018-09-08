@@ -19,7 +19,6 @@
 //= require jquery-ui
 //= require bootstrap
 //= require turbolinks
-//= require ckeditor/init
 
 //= require bootstrap-editable
 //= require bootstrap-editable-rails

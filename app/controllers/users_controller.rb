@@ -21,46 +21,12 @@ class UsersController < ApplicationController
 
     @user = User.new(user_params)    # Not the final implementation!
 
-    if @user.driver == true
-
-      @driver = Driver.create!(name: @user.name,
-                               store_id: Store.first.id,
-                               vehicle_id: Vehicle.first.id
-                                )
-
-      flash[:info] = "Fahrer-Account erfolgreich erstellt."
-
-      @user.save
-      @driver.save
-
-      log_in @user
-      flash[:success] = "Erfolgreich angemeldet!"
-
-      redirect_to @driver
-
-
-    else
 
 
     if @user.save
-      # Customer erstellen
-      @customer = Customer.new(user_id: @user.id)
-      @customer.save
 
-      @cart = Cart.new(customer_id: @customer.id, products: "")
-      @cart.save
-
-      if logged_in? and current_user.admin?
-
-        flash[:info] = "Nutzer erfolgreich erstellt. Weiter zu Schritt 2."
-
-      else
       log_in @user
       flash[:success] = "Erfolgreich angemeldet!"
-
-      end
-
-
 
       redirect_to edit_customer_path(@customer)
 
@@ -68,7 +34,7 @@ class UsersController < ApplicationController
       redirect_to new_user_path
     end
 
-    end
+
 
   end
 

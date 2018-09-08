@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180124111025) do
+ActiveRecord::Schema.define(version: 20180124105128) do
 
   create_table "carts", force: :cascade do |t|
     t.string   "items"
@@ -137,7 +137,6 @@ ActiveRecord::Schema.define(version: 20180124111025) do
     t.integer  "statustype"
     t.string   "name"
     t.float    "realtotaldistance"
-    t.float    "realtotalemissions"
   end
 
   create_table "options", force: :cascade do |t|

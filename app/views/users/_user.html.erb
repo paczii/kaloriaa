@@ -30,17 +30,7 @@
 
       <div class="section" style="background: white; margin: 3px"></div>
 
-      <% @customer = Customer.find_by_user_id(@user.id)%>
-      <div class="section" style="padding-bottom:20px;">
-        <h3 style="margin-top:15px;">Kundendaten </h3>
-        <h4 style="margin-top:15px;">Name: <%= @customer.name %> </h4>
-        <h4 style="margin-top:15px;">Kostenmodell: <%= costmodel_to_text(@customer.costmodel) %></h4>
-        <h4 style="margin-top:15px;">Heim-Adresse: <br> <div style="margin-top: 3px"><%= @customer.zip %> <%= @customer.city %> <br> <%= @customer.street %></div></h4>
-        <h4 style="margin-top:15px;">Arbeits-Adresse: <br> <div style="margin-top: 3px"><%= @customer.workzip %> <%= @customer.workcity %> <br> <%= @customer.workstreet %></div></h4>
 
-        <h6 class="title-price" style="margin-bottom:15px; font-size: 16px; max-width: 260px;"><%= link_to "Kundendaten bearbeiten", edit_customer_path(@customer.id), class: "btn btn-success" %></h6>
-
-      </div>
 
 
       <div class="section" style="background: white; margin: 3px"></div>
@@ -62,12 +52,6 @@
         <div class="row" style="margin-top: 20px">
 
 
-
-          <%= if current_user.admin?
-                render 'useradminfunctions'
-              else
-                render 'userfunctions'
-              end%>
 
 
 

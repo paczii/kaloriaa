@@ -16,30 +16,6 @@ module SessionsHelper
     !current_user.nil?
   end
 
-  def current_customer
-    if current_user.driver?
-    else
-      @current_customer = Customer.find_by_user_id(session[:user_id])
-    end
-  end
-
-  def current_cart
-    if current_user.driver?
-    else
-      @current_cart = Cart.find_by_customer_id(Customer.find_by_user_id(session[:user_id]).id)
-    end
-  end
-
-
-
-  def current_cart_size
-    if logged_in? and current_user.driver? == false
-    mycart = Cart.find_by_customer_id(session[:user_id])
-    productsarray = mycart.products.split(",")
-    @current_cart_size = productsarray.length
-      end
-
-  end
 
   # Logs out the current user.
   def log_out

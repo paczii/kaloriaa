@@ -83,7 +83,6 @@ gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
 gem "bootstrap-table-rails"
 
-gem 'ckeditor'
 gem 'google_directions'
 
 

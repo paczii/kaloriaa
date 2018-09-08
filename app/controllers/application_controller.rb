@@ -4,18 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
-  def demoversion
-    flash[:danger] = "Diese Funktion ist in der Online-Version deaktivert."
-
-    redirect_to :back
-  end
-
-  def startmodell
-    system "/Applications/GAMS24.7/sysdir/gams" + " vrpmodell"
-
-    redirect_to help_path
-
-  end
 
   private
 
