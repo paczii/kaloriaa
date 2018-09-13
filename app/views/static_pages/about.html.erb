@@ -3,13 +3,73 @@
 <% provide(:title, "About") %>
 
 
-<h1>Informationen</h1>
 
-Das vorliegende EUS wurde von Patrick Czerwinski im Rahmen einer Masterarbeit entwickelt.
-Das EUS nutzt für die Optimierungen eine Anbindung an GAMS, welche über den HEROKU-Server nicht möglich ist.
-Daher liegt hier eine Demo-Version vor, die lediglich zur Einsicht der Funktionen dient.
-Auch eine Bearbeitung von Daten ist in dieser Online-Version nicht möglich.<br><br>
 
-Kontakt: patrick.czerwinski@mail.de
+<!-- Hero section -->
+<section class="page-top-section set-bg">
+  <%= image_tag 'img/page-top-bg.jpg', class: 'page-top-section set-bg', title: 'my caption' %>
 
+
+</section>
+<!-- Hero section end -->
+
+<!-- About section -->
+<section class="about-section spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 about-text">
+        <h2 style="text-align: left">About our great team</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec varius dui. Suspendisse potenti. Vestibulum ac pellentesque tortor. Aenean congue sed metus in iaculis. Cras a tortor enim. Phasellus posuere vestibulum ipsum, eget lobortis purus. Orci varius natoque penatibus et magni. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec varius dui. Suspendisse potenti. Vestibulum ac pellentesque tortor. Aenean congue sed metus in iaculis. Cras a tortor enim. Phasellus posuere vestibulum ipsum, eget lobortis purus. Orci varius natoque penatibus et magni.</p>
+        <div class="site-btn">Read more</div>
+      </div>
+      <div class="col-lg-6">
+        <img src="img/about.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+<!-- About section end -->
+
+
+<!-- Facts section -->
+<section class="facts-section">
+  <div class="facts-warp">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-sm-6 fact-item">
+          <div class="fact-icon">
+            <img src="img/icon/1.png" alt="">
+          </div>
+          <h2>1287</h2>
+          <p>Amazing receipies</p>
+        </div>
+        <div class="col-lg-3 col-sm-6 fact-item">
+          <div class="fact-icon">
+            <img src="img/icon/2.png" alt="">
+          </div>
+          <h2>25</h2>
+          <p>Wine pairings</p>
+        </div>
+        <div class="col-lg-3 col-sm-6 fact-item">
+          <div class="fact-icon">
+            <img src="img/icon/3.png" alt="">
+          </div>
+          <h2>471</h2>
+          <p>Meat receipies</p>
+        </div>
+        <div class="col-lg-3 col-sm-6 fact-item">
+          <div class="fact-icon">
+            <img src="img/icon/4.png" alt="">
+          </div>
+          <h2>326</h2>
+          <p>Desert receipies</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Facts section end -->
+
+
+<%= render 'newsletter' %>
 

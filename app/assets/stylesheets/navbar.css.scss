@@ -3,35 +3,50 @@
 
 #logo {
   font-family: Lato;
-
+  margin-top: 21px;
   float: left;
-  display: block;
-  color: #f2f2f2;
+  color: #aeaeae;
   text-align: center;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 22px;
 
+  padding: 0 0px;
+
+  max-width: 200px;
   &:hover {
-    color: #82b440;
+    color: #699134;
     text-decoration: none;
   }
 }
 
 
 
-
-
-  .navbar {
+.navbar{
   background: #373737;
-  height: 60px;
-  line-height: 60px;
   border-bottom: 1px;
-  color:#ffffff;
-  font-size:16px;
+  color: #aeaeae;
+
+}
+
+.navbar-nav > li > a, .navbar-brand {
+  padding-top: 34px !important;
+  padding-bottom:0 !important;
+  height: 90px;
+}
+.navbar {min-height:90px !important;}
+
+.navbar-toggle{
+ margin-top: 14px !important;
+
+}
+
+  .navbar-collapse {
+  background: #373737;
+    color: #aeaeae;
+  font-size:18px;
   text-align: center;
   vertical-align: middle;
   text-decoration:none;
-
 
   li{
   margin-left: 0px;
@@ -39,11 +54,9 @@
 
 
     a{
-      display:table-cell;
-      height: 30px;
-      line-height: 30px;
-      font-size:16px;
-      text-align: center;
+
+      font-size:18px;
+      text-align: left;
       vertical-align: middle;
       text-decoration:none;
 
@@ -64,7 +77,9 @@
 }
 
 
-
+.navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
+  max-height: none;
+}
 
 
 

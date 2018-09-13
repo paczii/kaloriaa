@@ -62,6 +62,7 @@
 }
 
 a{
+  font-family: Lato-Normal;
   color: #3d3d3d;
   text-decoration: none;
   &:hover{
@@ -142,40 +143,56 @@ h1 {
 h2 {
   font-family: Lato;
 
-  font-size: 1.5em;
-  margin-bottom: 30px;
+  font-size: 36px;
   text-align: center;
-  font-weight: lighter;
-  color: #ffffff;
+  margin: 0;
+  font-weight: 500;
+  color: #474747;
 }
 
 h3 {
   font-family: Lato;
-
-  font-size: 1.5em;
-  margin-bottom: 0px;
+  font-size: 30px;
   text-align: center;
-  font-weight: lighter;
-  color: #343434;
+  margin: 0;
+  font-weight: 500;
+  color: #474747;
 }
+
+h4{
+  margin: 0;
+  font-weight: 500;
+  color: #474747;
+  font-size: 24px;
+
+}
+
+h5{
+  margin: 0;
+  font-weight: 500;
+  color: #474747;
+  font-size: 18px;
+
+}
+
+
 
 h6 {
   font-family: Lato;
-
-  font-size: 1em;
-  margin-bottom: 0px;
+  font-size: 16px;
   text-align: center;
-  font-weight: lighter;
-  color: #4f4f4f;
+  margin: 0;
+  font-weight: 500;
+  color: #474747;
 }
 
 
 
 p {
   font-family: Lato;
-
-  font-size: 1.1em;
-  line-height: 1.7em;
+  font-size: 14.1px;
+  color: #474747;
+  line-height: 2.1;
 }
 
 
